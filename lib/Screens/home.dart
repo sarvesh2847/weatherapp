@@ -5,11 +5,58 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 import 'package:weatherapp/bloc/weather_bloc_bloc.dart';
 
-class Homepage extends StatelessWidget {
+class Homepage extends StatefulWidget {
   const Homepage({super.key});
 
+  @override
+  State<Homepage> createState() => _HomepageState();
+}
+
+class _HomepageState extends State<Homepage> {
+
+
+  Widget getWeatherIcon(int code){
+    switch(code){
+      case >200 && <=300:
+        return Image.asset(
+          'assets/1.png'
+        );
+      case >300 && <=400:
+        return Image.asset(
+            'assets/2.png'
+        );
+      case >400 && <=500:
+        return Image.asset(
+            'assets/3.png'
+        );
+      case >500 && <=600:
+        return Image.asset(
+            'assets/4.png'
+        );
+      case >600 && <=700:
+        return Image.asset(
+            'assets/5.png'
+        );
+      case >700 && <=800:
+        return Image.asset(
+            'assets/6.png'
+        );
+      case == 800:
+        return Image.asset(
+            'assets/7.png'
+        );
+      case >800 && <=804:
+        return Image.asset(
+            'assets/8.png'
+        );
+        break;
+      default:
+        return Image.asset('assets/7.png');
+    }
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -87,26 +134,26 @@ class Homepage extends StatelessWidget {
                           ),
                           Align(
                             alignment: Alignment.center,
-                            child: Image.asset(
-                              'assets/1.png',
-                            ),
+                            child:getWeatherIcon(state.weather.weatherConditionCode!)
                           ),
-                          const Center(
-                            child: Text('21°C',
+                           Center(
+                            child: Text('${state.weather.temperature!.celsius!.round()}°C',
                                 style: TextStyle(
                                     color: Colors.white,
                                     fontSize: 55,
                                     fontWeight: FontWeight.w600)),
                           ),
-                          const Center(
-                            child: Text('THUNDERSTORM',
-                                style: TextStyle(
+                          Center(
+                            child: Text('${state.weather.weatherMain!.toUpperCase()}',
+                                style: const TextStyle(
                                     color: Colors.white,
                                     fontSize: 25,
                                     fontWeight: FontWeight.w500)),
                           ),
-                          const Center(
-                            child: Text('Friday 17 • 09.41am',
+                           Center(
+                            child: Text(
+                                DateFormat('EEEE dd •').add_jm().format(state.weather.date!),
+
                                 style: TextStyle(
                                     color: Colors.white,
                                     fontSize: 16,
@@ -125,7 +172,7 @@ class Homepage extends StatelessWidget {
                                     scale: 6,
                                   ),
                                   const SizedBox(width: 5),
-                                  const Column(
+                                  Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
@@ -136,7 +183,9 @@ class Homepage extends StatelessWidget {
                                       SizedBox(
                                         height: 3,
                                       ),
-                                      Text('5:34 am',
+                                      Text(
+                                          DateFormat().add_jm().format(state.weather.sunrise!),
+
                                           style: TextStyle(
                                               color: Colors.white,
                                               fontWeight: FontWeight.w700))
@@ -151,7 +200,7 @@ class Homepage extends StatelessWidget {
                                     scale: 6,
                                   ),
                                   const SizedBox(width: 5),
-                                  const Column(
+                                   Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
@@ -162,7 +211,7 @@ class Homepage extends StatelessWidget {
                                       SizedBox(
                                         height: 3,
                                       ),
-                                      Text('5:34 pm',
+                                      Text(DateFormat().add_jm().format(state.weather.sunset!),
                                           style: TextStyle(
                                               color: Colors.white,
                                               fontWeight: FontWeight.w700))
@@ -188,7 +237,7 @@ class Homepage extends StatelessWidget {
                                     scale: 6,
                                   ),
                                   const SizedBox(width: 5),
-                                  const Column(
+                                   Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
@@ -199,7 +248,7 @@ class Homepage extends StatelessWidget {
                                       SizedBox(
                                         height: 3,
                                       ),
-                                      Text('12°C',
+                                      Text('${state.weather.tempMax!.celsius!.round()}°C',
                                           style: TextStyle(
                                               color: Colors.white,
                                               fontWeight: FontWeight.w700))
@@ -214,7 +263,7 @@ class Homepage extends StatelessWidget {
                                     scale: 6,
                                   ),
                                   const SizedBox(width: 5),
-                                  const Column(
+                                   Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
@@ -225,7 +274,7 @@ class Homepage extends StatelessWidget {
                                       SizedBox(
                                         height: 3,
                                       ),
-                                      Text('8°C',
+                                      Text('${state.weather.tempMin!.celsius!.round()}°C',
                                           style: TextStyle(
                                               color: Colors.white,
                                               fontWeight: FontWeight.w700))
