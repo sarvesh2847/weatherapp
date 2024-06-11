@@ -1,16 +1,20 @@
-# weatherapp
+# Weatherapp
 
-A new Flutter project.
+A live weather app with dynamic functionality of updating itself occurding to the device location.
 
-## Getting Started
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
+<p align="center">
+  <img width="600" src="lib/Screenshots/Screenshot_20240611_140310.png" alt="Responsive App">
+  
+</p>
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Installation
+After cloning this repository, migrate to ```Weatherapp``` folder. There, run the following commands:
+```bash
+  flutter pub get
+  open -a simulator (to get iOS Simulator)
+  flutter run
+```
+    
